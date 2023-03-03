@@ -1,0 +1,6 @@
+testeAuvo/bin/*
+testeAuvo/obj/*
+*.csv
+*.docx
+.vs/*
+arquivo de exemplo saída.json
