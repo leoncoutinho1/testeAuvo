@@ -3,4 +3,5 @@ testeAuvo/obj/*
 *.csv
 *.docx
 .vs/*
+.vscode/*
 arquivo de exemplo saída.json

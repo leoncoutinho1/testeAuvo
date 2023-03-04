@@ -2,7 +2,15 @@
 {
     public class Department
     {
-        private long Id { get; set; }
-        private string Name { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public Department(long Id, string Name)
+        {
+            this.Id = Id;
+            this.Name = Name;
+        }
+        public List<Employee> Employees { get; }
     }
+
+    
 }

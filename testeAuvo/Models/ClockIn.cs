@@ -1,12 +1,19 @@
-﻿namespace testeAuvo.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace testeAuvo.Models
 {
     public class ClockIn
     {
-        private DateTime Date { get; set; }
-        private DateTime Entry { get; set; }
-        private DateTime ExitLunch { get; set; }
-        private DateTime EntryLunch { get; set; }
-        private DateTime Exit { get; set; }
-        private long EmployeeId { get; set; }
+        [Key]
+        public long Id { get; set; }
+        public DateTime Date { get; set; }
+        public DateTime Entry { get; set; }
+        public DateTime ExitLunch { get; set; }
+        public DateTime EntryLunch { get; set; }
+        public DateTime Exit { get; set; }
+        [ForeignKey("Employee")]
+        public long EmployeeId { get; set; }
+        public Employee  Employee { get; set;}
     }
 }

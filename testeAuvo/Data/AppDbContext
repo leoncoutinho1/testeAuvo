@@ -1,0 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace testeAuvo.Data
+{
+    public class AppDbContext : IdentityDbContext
+    {
+        public AppDbContext(DbContexOptions<AppDbContext> options) : base(options)
+        {
+            
+        }
+    }
+}
