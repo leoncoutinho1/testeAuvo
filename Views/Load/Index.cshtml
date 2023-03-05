@@ -1,0 +1,27 @@
+@model testeAuvo.Models.Load
+
+@{
+    ViewData["Title"] = "Load";
+}
+
+<h1>Load</h1>
+
+<h4>ClockIn</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="File" class="control-label"></label>
+                <input asp-for="File" type="file" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Load" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

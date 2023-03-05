@@ -1,7 +1,8 @@
-testeAuvo/bin/*
-testeAuvo/obj/*
+bin/*
+obj/*
 *.csv
 *.docx
 .vs/*
 .vscode/*
 arquivo de exemplo saída.json
+*.zip

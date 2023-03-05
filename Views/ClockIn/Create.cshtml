@@ -1,0 +1,52 @@
+@model testeAuvo.Models.ClockIn
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ClockIn</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Entry" class="control-label"></label>
+                <input asp-for="Entry" class="form-control" />
+                <span asp-validation-for="Entry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Exit" class="control-label"></label>
+                <input asp-for="Exit" class="form-control" />
+                <span asp-validation-for="Exit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntryLunch" class="control-label"></label>
+                <input asp-for="EntryLunch" class="form-control" />
+                <span asp-validation-for="EntryLunch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExitLunch" class="control-label"></label>
+                <input asp-for="ExitLunch" class="form-control" />
+                <span asp-validation-for="ExitLunch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employee" class="control-label"></label>
+                <select asp-for="Employee" class ="form-control" asp-items="ViewBag.Employee"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
