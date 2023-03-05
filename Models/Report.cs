@@ -1,14 +1,31 @@
-namespace testeAuvo.DTOs;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class ReportClockInsDepartmentsDTO
+namespace testeAuvo.Models;
+
+public class Report
 {
     public ICollection<DepartmentDTO> Departamentos { get; set; }
+    [DisplayName("Mês")]
+    [Required(ErrorMessage = "Campo Mês é obrigatório")]
+    public byte Mes { get; set; }
+        
+    [DisplayName("Ano")]
+    [Required(ErrorMessage = "Campo Ano é obrigatório")]
+    public ushort Ano { get; set; }
 }
 
 public class DepartmentDTO {
     public string Departamento { get; set; }
-    public string MesVigencia { get; set; }
-    public int AnoVigencia { get; set; }
+
+    [DisplayName("Mês")]
+    [Required(ErrorMessage = "Campo Mês é obrigatório")]
+    public byte MesVigencia { get; set; }
+        
+    [DisplayName("Ano")]
+    [Required(ErrorMessage = "Campo Ano é obrigatório")]
+    public ushort AnoVigencia { get; set; }
     public double TotalPagar { get; set; }
     public double TotalDescontos { get; set; }
     public double TotalExtras { get; set; }

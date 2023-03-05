@@ -7,7 +7,7 @@ public class Department
 {
     [Key]
     public long Id { get; set; }
-    [DisplayName("Valor Hora")]
+    [DisplayName("Departamento")]
     [Required(ErrorMessage = "Campo Nome é obrigatório")]
     public string Name { get; set; }
     public ICollection<Employee>? Employees { get; set; }

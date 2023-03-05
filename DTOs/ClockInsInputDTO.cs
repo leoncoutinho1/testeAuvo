@@ -7,5 +7,6 @@ public class ClockInsInputDTO {
     public DateTime Data { get; set; }
     public DateTime Entrada { get; set; }
     public DateTime Saida { get; set; }
-    public string Almoco { get; set; }
+    public DateTime IdaAlmoco { get; set; }
+    public DateTime VoltaAlmoco { get; set; }
 }

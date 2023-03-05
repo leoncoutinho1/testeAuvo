@@ -23,10 +23,10 @@ public class ClockIn
     [DisplayName("Volta do almoço")]
     [Required(ErrorMessage = "Campo Volta do almoço é obrigatório")]
     public DateTime ExitLunch { get; set; }
-
-    [DisplayName("Funcionário")]
+   
     [Required(ErrorMessage = "Campo Funcionário é obrigatório")]
     [ForeignKey("Employee")]
     public long EmployeeId { get; set; }
+    [DisplayName("Funcionário")]
     public Employee? Employee { get; set; }
 }

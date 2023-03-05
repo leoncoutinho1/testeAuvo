@@ -12,7 +12,8 @@ public class Employee {
     [DisplayName("Valor Hora")]
     [Required(ErrorMessage = "Campo Valor Hora é obrigatório")]
     public double HourlyRate { get; set; }
-    [ForeignKey("Departamento")]
+    [DisplayName("Departamento")]
+    [ForeignKey("Department")]
     [Required(ErrorMessage = "Campo Departamento é obrigatório")]
     public long DepartmentId { get; set; }
     public Department? Department { get; set; }
