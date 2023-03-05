@@ -32,36 +32,49 @@ public class LoadController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Index(IFormFile zipfile)
+    public async Task<IActionResult> Index(IFormFile File)
     {
         Dictionary<string, byte[]> files = new Dictionary<string, byte[]>(); 
-        Stream fs = zipfile.OpenReadStream();
-        using (var ms = new MemoryStream()) 
-        using (ZipArchive archive = new ZipArchive(ms, ZipArchiveMode.Read)) {
-            files = archive.Entries.ToDictionary(
-                x => x.FullName, 
-                x => {
-                    using(var ms = new MemoryStream()){
-                        x.Open().CopyTo(ms);
-                        return ms.ToArray();
+        
+        using (var ms = new MemoryStream()) {
+            await File.CopyToAsync(ms);
+            using (ZipArchive archive = new ZipArchive(ms, ZipArchiveMode.Read)) {
+                files = archive.Entries.ToDictionary(
+                    x => x.FullName, 
+                    x => {
+                        using(var ms = new MemoryStream()){
+                            x.Open().CopyTo(ms);
+                            return ms.ToArray();
+                        }
                     }
-                }
-            );
-        }   
+                );
+            }
+        }
 
         foreach (var file in files) {
-            var parts = file.Key.Split("-");
-            if (parts.Length != 3)
-                return BadRequest($"O nome do arquivo {file.Key} está fora do padrão (Departamento-Mês-Ano.csv).");
-            var departmentName = parts[0];
-            var mes = parts[1];
-            var ano = parts[2].Replace(".csv", "");
+            var status = await ProcessFile(file);
         }    
         
         return View();
     }
 
-    private void ProcessFile(KeyValuePair<string, byte[]> file) {
-        
+    private async Task<string> ProcessFile(KeyValuePair<string, byte[]> file) {
+        var parts = file.Key.Split("-");
+            if (parts.Length != 3)
+                return $"O nome do arquivo {file.Key} está fora do padrão (Departamento-Mês-Ano.csv).";
+            var departmentName = parts[0];
+            var mes = parts[1];
+            var ano = parts[2].Replace(".csv", "");
+
+            var department = _context.Departments.FirstOrDefault(x => x.Name == departmentName);
+            if (department == null) {
+                department = _context.Departments.Add(new Department { Name = departmentName } ).Entity;
+            }
+            
+            string s = System.Text.Encoding.UTF8.GetString(file.Value, 0, file.Value.Length);
+            var lines = s.Split("\n");
+            Console.WriteLine(lines[0]);
+            
+            return $"Arquivo {file.Key} processado com sucesso.";
     }
 }
