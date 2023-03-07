@@ -39,14 +39,17 @@ dotnet-aspnet-codegenerator controller -name <NameModel>Controller -dc Applicati
 O código autogerado criou o controllers e as views de CRUD necessárias para cada Model. Fiz o ajuste nas Views Create de Employee e ClockIn porque elas pediam o id da Departamento ou do Funcionário para realizar o cadastro. Troquei o campo Id pelo Name e realizei o ajuste no controller para buscar o Id a partir do Name e associar ao objeto que está sendo gravado.
 Nas demais Views também ajustei para exibir o nome no lugar do Id.
 
-Adicionei uma View no Load para o objeto ClockIn. Nela é feita a carga a partir dos arquivos .csv para popular o banco. A extração do relatório pode ser feita na tela ClockIn/Index.
+Adicionei uma View chamada Load para a realização da carga dos arquivos. Em vez de informar o caminho o usuário pode compactar todos os arquivos em um zip e submeter o form.
 
-## Contributing
+![tela de carga de pontos](/telaLoad.png "Tela de carga de pontos").
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+Neste ponto, como estou utilizando MVC e gravando tudo no banco, achei que me desviei da tarefa inicial por incluir persistência, então criei outro projeto chamado testeAuvo2 que também está em repositório no [Github](https://github.com/leoncoutinho1/testeAuvo2.git). Nele eu fiz da forma como foi solicitado, é uma console application que pede o caminho da pasta e utiliza paralelismo para a leitura de todos os arquivos.
 
-Please make sure to update tests as appropriate.
+O arquivo .zip não precisa ter um nome específico, basta que os arquivos internos estejam no padrão Departamento-Mês-Ano.csv.
+
+Para extrair o Json com o resumo de todos os departamentos basta acessar a View Report e selecionar mês/ano.
+
+![tela de report](/telaReport.png "Tela de Report")
 
 ## License
 

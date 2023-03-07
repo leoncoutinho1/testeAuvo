@@ -1,6 +1,8 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using testeAuvo.Enums;
 
 namespace testeAuvo.Models;
 
@@ -9,7 +11,7 @@ public class Report
     public ICollection<DepartmentDTO> Departamentos { get; set; }
     [DisplayName("Mês")]
     [Required(ErrorMessage = "Campo Mês é obrigatório")]
-    public byte Mes { get; set; }
+    public Months Mes { get; set; }
         
     [DisplayName("Ano")]
     [Required(ErrorMessage = "Campo Ano é obrigatório")]
@@ -17,11 +19,13 @@ public class Report
 }
 
 public class DepartmentDTO {
+    [JsonIgnore]
+    public long Codigo {get; set;}
     public string Departamento { get; set; }
 
     [DisplayName("Mês")]
     [Required(ErrorMessage = "Campo Mês é obrigatório")]
-    public byte MesVigencia { get; set; }
+    public Months MesVigencia { get; set; }
         
     [DisplayName("Ano")]
     [Required(ErrorMessage = "Campo Ano é obrigatório")]
@@ -35,6 +39,8 @@ public class DepartmentDTO {
 public class EmployeeDTO {
     public string Nome { get; set; }
     public long Codigo { get; set; }
+    [JsonIgnore]
+    public double HourlyRate {get;set;}
     public double TotalReceber { get; set; }
     public double HorasExtras { get; set; }
     public double HorasDebito { get; set; }

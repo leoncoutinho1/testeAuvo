@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO.Compression;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +65,8 @@ public class LoadController : Controller
         var parts = file.Key.Split("-");
         if (parts.Length != 3)
             return $"O nome do arquivo {file.Key} está fora do padrão (Departamento-Mês-Ano.csv).";
-        var departmentName = parts[0];
+        var departmentName = parts[0].Split("/")[1];
+        Console.WriteLine(departmentName);
         var mes = parts[1];
         var ano = parts[2].Replace(".csv", "");
 
@@ -74,7 +76,7 @@ public class LoadController : Controller
             await _context.SaveChangesAsync();
         }
         
-        string st = System.Text.Encoding.UTF8.GetString(file.Value, 0, file.Value.Length);
+        string st = Encoding.UTF8.GetString(file.Value, 0, file.Value.Length);
         var lines = st.Split("\n");
         Dictionary<long, Employee> employees = new Dictionary<long, Employee>();
         var clockIns = new List<ClockInsInputDTO>();
@@ -90,7 +92,6 @@ public class LoadController : Controller
                 var alm = l[6].Split(" - ");
                 var iAlm = alm[0].Split(":");
                 var vAlm = alm[1].Split(":");
-                Console.WriteLine(l[2].Replace("R$", "").Replace(" ", "").Replace(",", "."));
 
                 var c = new ClockInsInputDTO {
                     Codigo = long.Parse(l[0]),

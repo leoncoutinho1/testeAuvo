@@ -74,23 +74,6 @@ public class ClockInController : Controller
         return View(clockIn);
     }
 
-    // GET: ClockIn/Load
-    public IActionResult Load()
-    {
-        return View();
-    }
-
-    // POST: ClockIn/Load
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Load([Bind("file")] IFormFile file)
-    {
-        Console.WriteLine(file.Length);
-        return View();
-    }
-
     // GET: ClockIn/Edit/5
     public async Task<IActionResult> Edit(long? id)
     {

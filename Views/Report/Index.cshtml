@@ -12,7 +12,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Mes" class="control-label"></label>
-                <input asp-for="Mes" class="form-control" />
+                <select asp-for="Mes" class ="form-control" asp-items="ViewBag.Months"></select>
                 <span asp-validation-for="Mes" class="text-danger"></span>
             </div>
             <div class="form-group">
